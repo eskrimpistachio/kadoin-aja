@@ -35,6 +35,10 @@ module.exports = {
       },
       backgroundImage: {
         'linemask': "url('./components/img/linemask2.svg')",
+      },
+
+      margin:{
+        'half':'570px',
       }
     },
   },
