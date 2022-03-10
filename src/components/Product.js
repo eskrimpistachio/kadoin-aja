@@ -66,14 +66,11 @@ const Product = () => {
                 </button> 
             </div>
 
-            
+
         </div>
 
         <div className='flex flex-row bg-brandpink-100'>
-            <div className='flex flex-col w-36 rounded-[10px] ml-8 mr-4 mt-10 bg-white'>
-                <p>Filter By</p>
-            </div>
-
+           
             <div className='flex flex-col'>
                 <div className='flex flex-row mb-10'>
                     <button className='flex flex-col rounded-[10px] bg-customGray-100 mt-10 mr-4 hover:bg-brandpink-300 hover:text-white'>
