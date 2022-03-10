@@ -30,11 +30,12 @@ module.exports = {
         },
       },
       fontFamily:{
-        primaryFont : ['Oswald'],
-        logoFont : ['Berkshire Swash']
+        primaryFont : ['Playfair Display'],
+        logoFont : ['Source Sans Pro'],
+        logoFont2 : ['Berkshire Swash']
       },
       backgroundImage: {
-        'linemask': "url('./components/img/linemask2.svg')",
+        'loginbg': "url('./components/img/loginbg.svg')",
       },
 
       margin:{

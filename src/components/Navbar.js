@@ -6,7 +6,7 @@ const Navbar = ()=>{
     return(
     <div className="">
         <div className="bg-customGray-500 p-6 flex flex-row">
-            <p className="text-5xl text-brandpink-100 font-logoFont">Kadoin Aja</p>
+            <Link className="text-5xl text-brandpink-100 font-logoFont2" to="/main">Kadoin Aja</Link>
             <div></div>
             <div className="ml-auto mr-16 flex flex-row">
                 <Link to="" className="text-xl text-brandpink-100 font-primaryFont mt-6 mr-16">Akun</Link>

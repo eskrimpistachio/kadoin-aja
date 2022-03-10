@@ -68,10 +68,13 @@ const Product = () => {
 
 
         </div>
-
+        
         <div className='flex flex-row bg-brandpink-100'>
-           
-            <div className='flex flex-col'>
+        
+        <div className='ml-4 mr-6'>
+            Filter By
+        </div>
+            <div className='flex flex-col ml-8'>
                 <div className='flex flex-row mb-10'>
                     <button className='flex flex-col rounded-[10px] bg-customGray-100 mt-10 mr-4 hover:bg-brandpink-300 hover:text-white'>
                         <img src={Flower2}></img>
