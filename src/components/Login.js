@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = (username, password, id) => {
     return (  
         <div className="bg-loginbg bg-cover h-full p-6 flex flex-col">
 
