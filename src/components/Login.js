@@ -1,7 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { tweetAPI } from '../config/api';
+import { useAuth } from '../config/Auth';
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
-const Login = (username, password, id) => {
+const Login = ({username, password}) => {
+
+    const { setAndGetTokens } = useAuth();
+	const [forms, setForms] = useState({ email: '', password: '' });
+	const [isError, setIsError] = useState({ status: false, message: '' });
+	const navigate = useNavigate();
+
+	const handleLogin = async (e) => {
+		e.preventDefault();
+		try {
+			const loginResponse = await tweetAPI.post('/user/login', {
+				...forms,
+			});
+			//jika sukses
+			if (loginResponse.data.success) {
+				const token = loginResponse.data.data.token;
+
+				const currUser = await tweetAPI.get('/user', {
+					headers: { Authorization: `Bearer ${token}` },
+				});
+				const id = currUser.data.data.id;
+				setAndGetTokens(token, id);
+				navigate('/', { replace: true });
+				console.log(loginResponse, token, 'tokenton');
+			}
+		} catch (error) {
+			setIsError((isError) => ({
+				status: true,
+				message: 'Error while try to logged in',
+			}));
+			console.log(error, 'in login');
+		}
+	};
+
     return (  
         <div className="bg-loginbg bg-cover h-full p-6 flex flex-col">
 
@@ -12,10 +49,10 @@ const Login = (username, password, id) => {
                 <p className="font-primaryFont text-6xl text-brandblack font-extrabold">Login</p><br/>
 
                 <label for="phone" className="font-bold font-logoFont">Enter your phone number or email address</label><br/>
-                <input type="text" id="phone" placeholder="Phone number or email address" className="font-logoFont rounded-lg border-brandblack border-solid border-2 p-2"></input><br/>
+                <input type="text" id="phone" placeholder="Phone number or email address" className="font-logoFont rounded-lg border-brandblack border-solid border-2 p-2">{username}</input><br/>
 
                 <label for="pass" className="font-bold font-logoFont ">Enter your Password</label><br/>
-                <input type="text" id="phone" placeholder="Password" className="font-logoFont rounded-lg border-brandblack border-solid border-2 p-2"></input><br/>
+                <input type="text" id="phone" placeholder="Password" className="font-logoFont rounded-lg border-brandblack border-solid border-2 p-2">{password}</input><br/>
 
                 <p className="font-logoFont text-brandpink-300 ml-auto">Forgot Password</p><br/>
 

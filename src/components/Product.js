@@ -16,8 +16,9 @@ const Product = () => {
                     <div className='flex flex-col my-2'>
                         <label for="who" className='text-xl font-logoFont'>For Who?</label>
                         <select name='who' className='mt-4 py-1 bg-customGray-200 rounded-[10px]'>
+                            <option disabled selected value></option>
                             <option>
-
+                                Boyfriend
                             </option>
                         </select>
                     </div>
