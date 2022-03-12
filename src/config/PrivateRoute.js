@@ -1,15 +1,18 @@
-import React from 'react';
-import { Redi, Redirect, RediRedirect } from 'react-router-dom';
-import { useAuth } from './Auth';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { checkToken } from "./utils";
 
-export const PrivateRoute = ({ children }) => {
-	const { authToken } = useAuth();
+const PrivateRoute = ({ component: Component, ...rest }) => {
+	const isAuthenticated = checkToken();
 
-	return authToken ? children : <Redirect to="/" />;
+	return (
+	<Route
+		{...rest}
+		render={(props) =>
+		isAuthenticated ? <Component {...props} /> : <Redirect to="/Login.js" />
+		}
+	/>
+	);
 };
 
-export const RestrictedRoute = ({ children }) => {
-	const { authToken } = useAuth();
-
-	return authToken ? <Redirect to={-1} /> : children;
-};
+export default PrivateRoute;

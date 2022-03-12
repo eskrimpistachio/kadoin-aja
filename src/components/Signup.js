@@ -23,7 +23,7 @@ const Signup = () => {
                 <button className="font-bold text-white font-logoFont text-2xl bg-brandblack px-8 py-2 rounded-[10px]">Register</button><br/>
 
                 <p className="text-sm font-bold text-brandblack">Already Have An Account ?</p>
-                <Link className="text-sm text-brandpink-300 font-bold" to="./Login.js">Sign In</Link>
+                <Link className="text-sm text-brandpink-300 font-bold" to="./">Sign In</Link>
             </div>
         </div>
     );

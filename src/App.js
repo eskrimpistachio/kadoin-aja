@@ -2,70 +2,51 @@ import Navbar from "./components/Navbar.js";
 import Main from "./components/Main.js";
 import "./App.css" ;
 import Footer from "./components/Footer.js";
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Switch } from 'react-router-dom';
 import Product from "./components/Product.js";
 import Login from './components/Login.js';
 import Signup from "./components/Signup.js";
 import Detail from "./components/Detail.js";
-import {PrivateRoute, RestrictedRoute} from  "./config/PrivateRoute.js";
-import { AuthContext } from './config/Auth';
-import { useState } from 'react';
+import AuthRoute from "./config/AuthRoute.js";
+import PrivateRoute from "./config/PrivateRoute.js";
 
 function App() {
 
-  const isAnyToken = JSON.parse(localStorage.getItem('token'));
-	const userId = JSON.parse(localStorage.getItem('id'));
-	const [authToken, setAuthToken] = useState(isAnyToken);
-	const [user, setUser] = useState(userId);
-
-	const setAndGetTokens = (token, id) => {
-		localStorage.setItem('token', JSON.stringify(token));
-		localStorage.setItem('id', JSON.stringify(id));
-		setAuthToken(token);
-		setUser(id);
-	};
-
   return (
-    <AuthContext.Provider value={{ authToken, setAndGetTokens, user }}>
       <Router>
         <Switch>
           <div>
-          <Route exact path="/">
-            <PrivateRoute>
+          <AuthRoute exact path="/">
               <Login 
               />
-            </PrivateRoute>
-          </Route>
+          </AuthRoute>
 
-          <Route exact path="/Signup.js">
-            <RestrictedRoute>
+          <AuthRoute exact path="/Signup.js">
               <Signup/>
-            </RestrictedRoute>
-          </Route>
+          </AuthRoute>
         
-          <Route path="/main">
+          <PrivateRoute path="/main">
             <Navbar/>
             <Main/>
             <Footer/>
-          </Route>
+          </PrivateRoute>
 
-          <Route path="/Product.js">
+          <PrivateRoute path="/Product.js">
             <Navbar/>
             <Product/>
             <Footer/>
-          </Route>
+          </PrivateRoute>
 
-          <Route path="/Detail.js">
+          <PrivateRoute path="/Detail.js">
             <Navbar/>
             <Detail/>
             <Footer/>
-          </Route>
+          </PrivateRoute>
             
           </div>
         </Switch>
 
       </Router>
-    </AuthContext.Provider>
   );
 }
 
