@@ -3,16 +3,16 @@ import { Route, Redirect } from "react-router-dom";
 import { checkToken } from "./utils";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-	const isAuthenticated = checkToken();
+  const isAuthenticated = checkToken();
 
-	return (
-	<Route
-		{...rest}
-		render={(props) =>
-		isAuthenticated ? <Component {...props} /> : <Redirect to="/Login.js" />
-		}
-	/>
-	);
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated ? <Component {...props} /> : <Redirect to="/" />
+      }
+    />
+  );
 };
 
 export default PrivateRoute;
