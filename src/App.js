@@ -1,32 +1,25 @@
-import Navbar from "./components/Navbar.js";
 import Main from "./components/Main.js";
-import Footer from "./components/Footer.js";
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Product from "./components/Product.js";
 import Login from './components/Login.js';
 import Signup from "./components/Signup.js";
-import AuthRoute from "./config/AuthRoute.js";
-import PrivateRoute from "./config/PrivateRoute.js";
+
 
 function App() {
 
   return (
       <Router>
-        <Switch>
+        <Routes>
 
-        {/* <Route exact path = "/">
-          <Login/>
-        </Route> */}
+          <Route exact path="/" element={<Login/>}/>
 
-          <AuthRoute exact path="/" component={Login}/>
-
-          <AuthRoute path="/signup" component={Signup}/>
+          <Route path="/signup" element={<Signup/>}/>
         
-          <PrivateRoute path="/main" component={Main}/>
+          <Route path="/main" element={<Main/>}/>
 
-          <PrivateRoute path="/product" component={Product}/>
+          <Route path="/product" element={<Product/>}/>
 
-        </Switch>
+        </Routes>
 
       </Router>
   );
